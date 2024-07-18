@@ -1,0 +1,6 @@
+.DS_Store
+nature.mp4S
+node_modules
+.env
+.parcel-cache
+dist

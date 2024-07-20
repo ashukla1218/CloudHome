@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 
 const useSignup = () => {
     const navigate = useNavigate();
+
     const signup = async ({ email, password }) => {
         try {
             const res = await fetch(`${process.env.BACKEND_URL}/api/v1/auth/signup`, {
@@ -12,12 +13,11 @@ const useSignup = () => {
                     "content-type": "application/json",
                 },
             });
-            console.log(res);
             const data = await res.json();
             console.log(data);
-            if(data.status ==='success'){
-                navigate(`/login?email=$(email)`);
-            }else{
+            if (data.status === "success") {
+                navigate(`/login?email=${email}`);
+            } else {
                 alert(data.message);
             }
         } catch (err) {
@@ -28,3 +28,4 @@ const useSignup = () => {
 };
 
 export default useSignup;
+

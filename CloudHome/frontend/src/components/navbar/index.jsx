@@ -1,14 +1,14 @@
-import { useDispatch } from "react-redux";
 import "./styles.css";
-import React from "react";
+import { useDispatch } from "react-redux";
 import { appLogout } from "../../store/slices/authSlice";
 
 const Navbar = () => {
-const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         dispatch(appLogout());
     };
+
     return (
         <div className="navbar-container">
             <div className="navbar-left-items">
@@ -22,3 +22,4 @@ const dispatch = useDispatch();
 };
 
 export default Navbar;
+

@@ -1,16 +1,10 @@
 import { useState } from "react";
 import useSignup from "../hooks/useSignup";
+import Navbar from "../components/navbar";
 
 const SignupPage = () => {
-    const loginPageStyles = {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "24px",
-        margin: "auto",
-        padding: "24px",
-    };
+    
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { signup } = useSignup();
@@ -18,18 +12,24 @@ const SignupPage = () => {
     const handleSubmit = () => {
         const validation = true;
         if (validation) {
-            signup({ email, password });
+            signup({ name,email, password });
         } else {
             alert("Validation Failed");
         }
     };
 
     return (
-        <div style={loginPageStyles}>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleSubmit}>Sign Up</button>
+        <>
+        <Navbar />
+        <div className="signup-container">
+            <h1>Signup</h1>
+            <input className="signup-input" placeholder="Name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+            <input className="signup-input" placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className="signup-input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <button className="signup-button" onClick={handleSubmit}>Sign Up</button>
+            <div className="login-link">Already have an account? <a href="/login">Login</a></div>
         </div>
+        </>
     );
 };
 

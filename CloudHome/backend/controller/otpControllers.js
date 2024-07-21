@@ -1,4 +1,11 @@
+const crypto = require('crypto');
 const nodemailer = require("nodemailer");
+
+// Function to generate a random 4-digit OTP
+const generateRandomOtp = () => {
+    return crypto.randomInt(1000, 9999);
+};
+
 
 const sendOTPMail = async (email, otp) => {
     try {
@@ -43,8 +50,9 @@ const generateOtp = async (req, res) => {
         const { email } = req.user;
 
         // generate Random OTP
+        const otp = generateRandomOtp();
 
-        const isMailSent = await sendOTPMail("aashu.guru0@gmail.com", 1200);
+        const isMailSent = await sendOTPMail(email, otp);
 
         if (!isMailSent) {
             res.status(500);

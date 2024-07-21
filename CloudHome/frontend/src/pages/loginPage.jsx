@@ -1,16 +1,9 @@
 import { useState } from "react";
 import useLogin from "../hooks/useLogin";
+import Navbar from "../components/navbar";
 
 const LoginPage = () => {
-    const loginPageStyles = {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "24px",
-        margin: "auto",
-        padding: "24px",
-    };
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useLogin();
@@ -25,11 +18,16 @@ const LoginPage = () => {
     };
 
     return (
-        <div style={loginPageStyles}>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleSubmit}>login</button>
+        <>
+        <Navbar />
+        <div className="login-container">
+            <h1>Login</h1>
+            <input className="login-input" placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className="login-input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <button className="login-button" onClick={handleSubmit}>login</button>
+            <div className="signup-link">Don't have an account? <a href="/signup">Signup</a></div>
         </div>
+        </>
     );
 };
 

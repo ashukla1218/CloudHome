@@ -1,11 +1,6 @@
-const crypto = require('crypto');
 const nodemailer = require("nodemailer");
-
-// Function to generate a random 4-digit OTP
-const generateRandomOtp = () => {
-    return crypto.randomInt(1000, 9999);
-};
-
+const OtpModel = require("../model/otpSchema");
+const UserModel = require("../model/userModel");
 
 const sendOTPMail = async (email, otp) => {
     try {
@@ -14,8 +9,8 @@ const sendOTPMail = async (email, otp) => {
             secure: true,
             port: 465,
             auth: {
-                user: "cloudhome572@gmail.com",
-                pass: "dwac zbcp nxqa zkyw",
+                user: process.env.NODEMAILER_MAIL_USER,
+                pass: process.env.NODEMAILER_MAIL_PASS,
             },
         });
 
@@ -47,12 +42,30 @@ const sendOTPMail = async (email, otp) => {
 
 const generateOtp = async (req, res) => {
     try {
-        const { email } = req.user;
+        const { email, _id } = req.user;
+        const restrictedTimeForOTP = 10 * 60 * 1000;
 
-        // generate Random OTP
-        const otp = generateRandomOtp();
+        const sentOTPMail = await OtpModel.findOne({
+            email,
+            createdAt: {
+                $gte: Date.now() - restrictedTimeForOTP,
+            },
+        });
+        if (sentOTPMail) {
+            res.status(200);
+            res.json({
+                status: "success",
+                message: `Otp is already is sent to ${email}`,
+                data: {
+                    createdAt: sentOTPMail.createdAt,
+                },
+            });
+            return;
+        }
 
-        const isMailSent = await sendOTPMail(email, otp);
+        const randomOTP = Math.floor(Math.random() * 9000 + 1000);
+
+        const isMailSent = await sendOTPMail(email, randomOTP);
 
         if (!isMailSent) {
             res.status(500);
@@ -61,9 +74,14 @@ const generateOtp = async (req, res) => {
                 message: `Otp NOT sent to ${email}`,
                 data: {},
             });
+            return;
         }
 
-        // create a entry in database with that OTP
+        await OtpModel.create({
+            otp: randomOTP,
+            email,
+            userId: _id,
+        });
 
         res.status(201);
         res.json({
@@ -83,4 +101,64 @@ const generateOtp = async (req, res) => {
     }
 };
 
-module.exports = { generateOtp };
+const verifyOtp = async (req, res) => {
+    try {
+        const { otp } = req.body;
+
+        console.log("\n✅ : otp:", otp);
+
+        const { email } = req.user;
+
+        const restrictedTimeForOTP = 10 * 60 * 1000; // milliseconds
+
+        const sentOTPMail = await OtpModel.findOne({
+            email,
+            createdAt: {
+                $gte: Date.now() - restrictedTimeForOTP,
+            },
+        });
+
+        console.log("\n✅ : sentOTPMail:", sentOTPMail);
+
+        if (!sentOTPMail) {
+            res.status(404);
+            res.json({
+                status: "fail",
+                message: "Verification failed. Please generate new OTP!",
+            });
+            return;
+        }
+
+        const hashedOtp = sentOTPMail.otp;
+        const isCorrect = await sentOTPMail.verifyOtp(otp + "", hashedOtp);
+
+        if (!isCorrect) {
+            res.status(400);
+            res.json({
+                status: "fail",
+                message: "Incorrect OTP!",
+            });
+            return;
+        }
+
+        await UserModel.findOneAndUpdate({ email }, { isEmailVerified: true });
+
+        res.status(200);
+        res.json({
+            status: "success",
+            message: "Verification successful",
+            data: {},
+        });
+    } catch (err) {
+        console.log("------------------------");
+        console.log(err);
+        console.log("------------------------");
+        res.status(500);
+        res.json({
+            status: "fail",
+            message: "Internal Server Error",
+        });
+    }
+};
+
+module.exports = { generateOtp, verifyOtp };

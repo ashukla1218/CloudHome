@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const { ObjectId } = mongoose.Schema.Types;
@@ -35,6 +34,9 @@ const fileFolderSchema = new mongoose.Schema(
                 ref: "FileFolder",
             },
         ],
+        metaData: {
+            type: Object,
+        },
     },
     { timestamps: true }
 );

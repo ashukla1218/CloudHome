@@ -4,11 +4,13 @@ import Navbar from "../components/navbar";
 import useCreateFolder from "../hooks/useCreateFolder";
 import useGetFileFolders from "../hooks/useGetFileFolders";
 import useUploadFile from "../hooks/useUploadFile";
+import { FaFolder, FaFile } from 'react-icons/fa';
 
 const HomePage = () => {
     const [newFolder, setNewFolder] = useState("");
     const inputRef = useRef(null);
     const [showCreateFolder, setShowCreateFolder] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
     const { createFolder } = useCreateFolder();
     const [folderStructure, setFolderStructure] = useState([{ _id: null, name: "Cloud Home" }]);
     const { getFileFolders, fileFolders } = useGetFileFolders();
@@ -61,16 +63,23 @@ const HomePage = () => {
         }
     };
 
+
+    const filteredFileFolders = fileFolders.filter((elem) =>
+        elem.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div>
             <Navbar />
             <div className="homepage-main-container">
-                <h3>Welcome to Cloud Home</h3>
+                <h1>Welcome to Cloud Home</h1>
                 <button onClick={handleAllowCreateFolder}>Create Folder</button>
                 <input className="file-upload-input" ref={inputRef} type="file" onChange={handleFileUpload} />
-                <ul style={{ display: "flex", padding: "24px", gap: "24px" }}>
+                <input type="text" className="search-bar" placeholder="Search files and folders" value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)} />  
+                <ul>
                     {folderStructure.map((elem, idx) => {
-                        return <li onClick={() => handleBackClick(idx)}>{elem.name}</li>;
+                        return <li key={idx} onClick={() => handleBackClick(idx)}>{elem.name}</li>;
                     })}
                 </ul>
                 <div>
@@ -82,20 +91,16 @@ const HomePage = () => {
                         </div>
                     )}
                 </div>
-                <div>
-                    {fileFolders.map((elem) => {
+                <div className="file-folder-container">
+                    {filteredFileFolders.map((elem) => {
                         return (
                             <div
-                                style={{
-                                    backgroundColor: elem.type === "folder" ? "yellow" : "orange",
-                                    border: "1px solid grey",
-                                    borderRadius: "8px",
-                                    width: "fit-content",
-                                    padding: "8px 16px",
-                                    margin: "8px 16px",
-                                }}
+                                key={elem._id}
+                                data-type={elem.type}
                                 onDoubleClick={() => handleDoubleClick(elem)}
+                                className="file-folder-item"
                             >
+                                {elem.type === "folder" ? <FaFolder /> : <FaFile />}
                                 <p>{elem.name}</p>
                             </div>
                         );

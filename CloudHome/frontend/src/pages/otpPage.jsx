@@ -30,6 +30,7 @@ const OtpPage = () => {
     return (
         <>
             <Navbar />
+            <div className="auth-page-wrapper">
             <div className="otp-page-container">
                 <p>Email : {email}</p>
                 <div className="otp-input-container">
@@ -40,6 +41,7 @@ const OtpPage = () => {
                     <div className="otp-column c4" />
                 </div>
                 <button onClick={handleSubmit}>Verify</button>
+            </div>
             </div>
         </>
     );

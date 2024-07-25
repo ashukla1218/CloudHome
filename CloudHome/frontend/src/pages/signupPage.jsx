@@ -21,14 +21,16 @@ const SignupPage = () => {
     return (
         <>
         <Navbar />
-        <div className="signup-container">
-            <h1>Signup</h1>
-            <input className="signup-input" placeholder="Name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
-            <input className="signup-input" placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input className="signup-input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button className="signup-button" onClick={handleSubmit}>Sign Up</button>
-            <div className="login-link">Already have an account? <a href="/login">Login</a></div>
-        </div>
+        <div className="auth-page-wrapper">
+                <div className="signup-container">
+                    <h1>Signup</h1>
+                    <input className="signup-input" placeholder="Name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+                    <input className="signup-input" placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input className="signup-input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button className="signup-button" onClick={handleSubmit}>Sign Up</button>
+                    <div className="login-link">Already have an account? <a href="/login">Login</a></div>
+                </div>
+            </div>
         </>
     );
 };

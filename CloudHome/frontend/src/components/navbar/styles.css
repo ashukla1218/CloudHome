@@ -74,6 +74,10 @@
 
 /* styles.css */
 .navbar-container {
+    position: fixed; /* Fixes the navbar at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,6 +85,7 @@
     background-color: #ffffff; /* Background color of the navbar */
     border-bottom: 1px solid #e0e0e0; /* Light grey border for separation */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    z-index: 1000; /* Ensures the navbar is above other elements */
 }
 
 .navbar-left-items h3 {
@@ -90,7 +95,7 @@
 }
 
 .navbar-right-items button {
-    background-color: #1a73e8; /* Primary button color */
+    background-color: rgb(86,108,131); /* Primary button color */
     color: white;
     border: none;
     border-radius: 4px;
@@ -101,6 +106,7 @@
 }
 
 .navbar-right-items button:hover {
-    background-color: #1558b0; /* Darker shade for hover effect */
+    background-color: rgb(45,61,84); /* Darker shade for hover effect */
 }
+
 

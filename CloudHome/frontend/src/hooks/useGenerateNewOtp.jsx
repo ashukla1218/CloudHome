@@ -5,7 +5,7 @@ const useGenerateNewOtp = () => {
 
     const generateNewOtp = async () => {
         try {
-            const res = await fetch(`${process.env.BACKEND_URL}/api/v1/otp/generate`, {
+            const res = await fetch(`https://storify-29bl.onrender.com/api/v1/otp/generate`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

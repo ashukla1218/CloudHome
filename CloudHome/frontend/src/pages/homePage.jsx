@@ -13,7 +13,7 @@
         const [isDropdownOpen, setIsDropdownOpen] = useState(false);
         const [searchQuery, setSearchQuery] = useState("");
         const { createFolder } = useCreateFolder();
-        const [folderStructure, setFolderStructure] = useState([{ _id: null, name: "Home" }]);
+        const [folderStructure, setFolderStructure] = useState([{ _id: null, name: "Storify Home" }]);
         const { getFileFolders, fileFolders } = useGetFileFolders();
 
         const parentFolder = folderStructure[folderStructure.length - 1];
@@ -83,7 +83,7 @@
                 )}
             </div>
             <div className="homepage-main-container">
-                <h1>Welcome to Cloud Home</h1>
+                <h1>Welcome to Storify</h1>
                 <input type="text" className="search-bar" placeholder="Search files and folders" value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)} />  
                 <ul>

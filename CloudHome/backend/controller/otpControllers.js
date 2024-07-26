@@ -17,12 +17,17 @@ const sendOTPMail = async (email, otp) => {
         const response = await mailer.sendMail({
             from: "abcd", // likhilesh@<home.cloud.app>
             to: email,
-            subject: "OTP", // OTP verification for your account
+            subject: "OTP Verification | Storify", // OTP verification for your account
             html: `
                 <html>
                     <body>
-                        <h1> Your OTP for Cloud Home APP is </h1>
-                        <h1> ${otp} </h1>
+                        <h1>Your OTP Verification Code</h1>
+                        <p>Dear,</p>
+                        <p>We have received a request to verify your identity. To complete this process, please use the One-Time Password (OTP) provided below:</p>
+                        <p class="otp">Your OTP Code: ${otp}</p>
+                        <p>This code is valid for the next 10 minutes. For security reasons, please do not share this code with anyone.</p>
+                        <p>Thank you for your cooperation.</p>
+                        <p>Best regards,<br>[Storify]<br></p>
                     </body>
                 </html>
             `,

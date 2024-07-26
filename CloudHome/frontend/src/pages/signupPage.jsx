@@ -30,7 +30,7 @@ const SignupPage = () => {
                     <button className="signup-button" onClick={handleSubmit}>Sign Up</button>
                     <div className="login-link">Already have an account? <a href="/login">Login</a></div>
                 </div>
-            </div>
+            </div>  
         </>
     );
 };

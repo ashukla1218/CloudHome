@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
         <div className="navbar-container">
             <div className="navbar-left-items">
-                <h3>Cloud Home</h3>
+                <h3>Storify</h3>
             </div>
             <div className="navbar-right-items">
                 <button onClick={handleLogout}>Logout</button>

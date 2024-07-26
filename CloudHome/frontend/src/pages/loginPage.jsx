@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useLogin from "../hooks/useLogin";
 import Navbar from "../components/navbar";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
     
@@ -26,7 +27,7 @@ const LoginPage = () => {
                     <input className="login-input" placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <input className="login-input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button className="login-button" onClick={handleSubmit}>Login</button>
-                    <div className="signup-link">Don't have an account? <a href="/signup">Signup</a></div>
+                    <div className="signup-link">Don't have an account? <Link to="/signup">Signup</Link></div>
                 </div>
             </div>
         </>

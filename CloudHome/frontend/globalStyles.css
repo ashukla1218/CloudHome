@@ -150,6 +150,57 @@
     text-decoration: none;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signup-container, .login-container {
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .signup-container h1, .login-container h1 {
+    font-size: 20px;
+  }
+
+  .signup-input, .login-input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .signup-button, .login-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .login-link, .signup-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-container, .login-container {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .signup-container h1, .login-container h1 {
+    font-size: 18px;
+  }
+
+  .signup-input, .login-input {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .signup-button, .login-button {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .login-link, .signup-link {
+    font-size: 10px;
+  }
+}
+
 
 
 /* css for Homepage */
@@ -237,7 +288,7 @@ body {
 /* Create Folder Section */
 .create-folder-container {
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   left: 20px;
   top: 100px;
   background-color: #fff;
@@ -401,6 +452,54 @@ button {
 
 button:hover {
   background-color: rgb(45,61,84);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .homepage-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    box-shadow: none;
+  }
+
+  .homepage-main-container {
+    padding: 10px;
+  }
+
+  .file-folder-container {
+    padding-left: 20px;
+  }
+
+  .search-bar {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .new-plus-btn {
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .file-folder-heading {
+    font-size: 18px;
+  }
+
+  li {
+    font-size: 14px;
+  }
 }
 
 

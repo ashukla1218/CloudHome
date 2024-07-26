@@ -3,7 +3,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import LoginPage from "./src/pages/loginPage";
 import SignupPage from "./src/pages/signupPage";
 import { useSelector } from "react-redux";
-import HomePage from "./src/pages/homepage";
+import HomePage from "./src/pages/homePage";
 import OtpPage from "./src/pages/otpPage";
 
 const AppRouter = () => {

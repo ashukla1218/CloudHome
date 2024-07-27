@@ -1,26 +1,28 @@
-/* body {
+body {
     font-family: Arial, sans-serif;
     background-color: #f0f2f5;
-    background: url('https://images.pexels.com/photos/36487/above-adventure-aerial-air.jpg?cs=srgb&dl=pexels-bess-hamiti-83687-36487.jpg&fm=jpg') no-repeat center fixed;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    /* background: url('https://images.pexels.com/photos/36487/above-adventure-aerial-air.jpg?cs=srgb&dl=pexels-bess-hamiti-83687-36487.jpg&fm=jpg') no-repeat center fixed; */
+    
     background-size: cover;
-} */
+}
 
 .otp-page-container{
+    color: rgb(45,61,84);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin: 24px;
     padding: 24px;
-    background-color: blanchedalmond;
+    background-color: rgb(241, 236, 236);
     gap: 24px;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 16px;
+  }
 
     button {
         width: 30%;
@@ -37,6 +39,13 @@
     button:hover {
         background-color: rgb(45,61,84);
     }
+}
+
+.email-container{
+  padding: 8px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .otp-input-container{
@@ -58,7 +67,7 @@
 
         height: 44px;
         width: 24px;
-        background-color: blanchedalmond;
+        background-color: rgb(241, 236, 236);
     }
 
     .c1{
@@ -118,7 +127,7 @@
     font-size: 16px;
 }
 
-.login-logo ,.signup-logo {
+.login-logo ,.signup-logo, .otp-logo {
   width: 140px; /* Adjust the size of the logo */
   margin-bottom: 16px;
 }

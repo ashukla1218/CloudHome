@@ -1,6 +1,7 @@
 import "./styles.css";
 import { useDispatch } from "react-redux";
 import { appLogout } from "../../store/slices/authSlice";
+import logo from '../../pages/logo.png';
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -12,7 +13,8 @@ const Navbar = () => {
     return (
         <div className="navbar-container">
             <div className="navbar-left-items">
-                <h3>Storify</h3>
+            <img src={logo} alt="Storify Logo" className="navbar-logo" />
+                {/* <h3></h3> */}
             </div>
             <div className="navbar-right-items">
                 <button onClick={handleLogout}>Logout</button>

@@ -86,12 +86,17 @@
     border-bottom: 1px solid #e0e0e0; /* Light grey border for separation */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     z-index: 1000; /* Ensures the navbar is above other elements */
+    background-color: rgb(241, 236, 236);
 }
 
 .navbar-left-items h3 {
     margin: 0;
     font-size: 24px;
     color: #202124; /* Text color */
+}
+
+.navbar-logo{
+    width: 140px;
 }
 
 .navbar-right-items button {

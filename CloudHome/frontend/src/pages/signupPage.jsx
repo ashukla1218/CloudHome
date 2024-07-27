@@ -2,6 +2,7 @@ import { useState } from "react";
 import useSignup from "../hooks/useSignup";
 import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
+import logo from '../../src/pages/logo.png';
 
 const SignupPage = () => {
     
@@ -24,6 +25,7 @@ const SignupPage = () => {
         <Navbar />
         <div className="auth-page-wrapper">
                 <div className="signup-container">
+                <img src={logo} alt="Logo" className="signup-logo" />
                     <h1>Signup</h1>
                     <input className="signup-input" placeholder="Name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
                     <input className="signup-input" placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />

@@ -2,6 +2,7 @@ import { useState } from "react";
 import useLogin from "../hooks/useLogin";
 import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
+import logo from '../../src/pages/logo.png';
 
 const LoginPage = () => {
     
@@ -23,6 +24,7 @@ const LoginPage = () => {
         <Navbar />
         <div className="auth-page-wrapper">
                 <div className="login-container">
+                <img src={logo} alt="Storify Logo" className="login-logo" />
                     <h1>Login</h1>
                     <input className="login-input" placeholder="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <input className="login-input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
